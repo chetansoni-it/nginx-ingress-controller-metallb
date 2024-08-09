@@ -1,0 +1,17 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: lb-ip-pool
+  namespace: metallb-system
+spec:
+  addresses:
+  - 172.18.0.100-172.18.0.105 # adjust the IP address according to K8s cluster Network
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: metallb-l2
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+  - lb-ip-pool
